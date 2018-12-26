@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6练习</title>
+</head>
+
+<body>
+    <div id="number">123213213213132</div>
+    //插入
+    <p id="js">javascript</p>
+    <div id="list">
+        <p id="php">php</p>
+        <p id="c">c</p>
+        <p id="python">python</p>
+    </div>
+    <button type="button" onclick="c()">添加</button>
+
+    <script>
+        class Cat {
+            constructor(name) {
+                this.name = name;
+            }
+            hello() {
+                alert("mew mew mew");
+            }
+        }
+        let cat = new Cat;
+        //cat.hello();
+        class Kitty extends Cat {
+            hello() {
+                alert("mew~");
+            }
+        }
+        let kitty = new Kitty;
+        kitty.hello();
+
+        let num = document.getElementById("number").innerHTML = "this is a div";
+
+        function c() {
+            alert("123");
+            let js = document.getElementById("js");
+            let list = document.getElementById("list");
+            list.appendChild(js);
+        }
+
+
+    </script>
+</body>
+
+</html>
