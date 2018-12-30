@@ -46,7 +46,40 @@
             let list = document.getElementById("list");
             list.appendChild(js);
         }
+        console.log("%c%s","color: #f00","递归阶乘分割线");
+        function dg(n) {
+            if (n == 1) {
+                console.log("n = " + n);
+                return 1;
+            } else {
+                console.log("n = " + n);
+                return n * dg(n - 1);
+            }
+        }
 
+        console.log(dg(3));//dg(3)=(3*(2*1))=6
+
+        console.log("%c%s","color: #f00","闭包分割线");
+        function bibao(x) {
+            return function(y){
+                console.log(x+y);
+            }
+        }
+        let bb=bibao(1);
+        bb(10);
+        bb(12);
+
+        console.log("%c%s","color: #f00","递归汉诺塔分割线");
+        function move(n,a,b,c){
+            if(n==1){
+                console.log(a+"---->"+c);
+            }else{
+                move((n-1),a,c,b);
+                console.log(a+"---->"+c);
+                move((n-1),b,a,c);
+            }
+        }
+        move(3,'A','B','C');
 
     </script>
 </body>
