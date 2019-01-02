@@ -46,7 +46,7 @@
             let list = document.getElementById("list");
             list.appendChild(js);
         }
-        console.log("%c%s","color: #f00","递归阶乘分割线");
+        console.log("%c%s", "color: #f00", "递归阶乘分割线");
         function dg(n) {
             if (n == 1) {
                 console.log("n = " + n);
@@ -59,28 +59,128 @@
 
         console.log(dg(3));//dg(3)=(3*(2*1))=6
 
-        console.log("%c%s","color: #f00","闭包分割线");
+        console.log("%c%s", "color: #f00", "闭包分割线");
         function bibao(x) {
-            return function(y){
-                console.log(x+y);
+            return function (y) {
+                console.log(x + y);
             }
         }
-        let bb=bibao(1);
+        let bb = bibao(1);
         bb(10);
         bb(12);
 
-        console.log("%c%s","color: #f00","递归汉诺塔分割线");
-        function move(n,a,b,c){
-            if(n==1){
-                console.log(a+"---->"+c);
-            }else{
-                move((n-1),a,c,b);
-                console.log(a+"---->"+c);
-                move((n-1),b,a,c);
+        console.log("%c%s", "color: #f00", "递归汉诺塔分割线");
+        function move(n, a, b, c) {
+            if (n == 1) {
+                console.log(a + "---->" + c);
+            } else {
+                move((n - 1), a, c, b);
+                console.log(a + "---->" + c);
+                move((n - 1), b, a, c);
             }
         }
-        move(3,'A','B','C');
+        move(3, 'A', 'B', 'C');
 
+        //call和apply的使用
+        class Dog {
+            constructor(food) {
+                this.food = "bone";
+            }
+            eat() {
+                console.log("eat " + this.food);
+            }
+        }
+        let dog = new Dog;
+        dog.eat();
+        let whiteDog = {
+            food: "fish"
+        }
+        dog.eat.call(whiteDog);
+        dog.eat.apply(whiteDog);
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        //call实现继承   
+        function Student(name, age) {
+            Person.call(this, name, age);
+        }
+        //apply实现继承
+        // function Student(){
+        //     Person.apply(this,arguments);
+        // }
+        let stu = new Student("Bitmew", 12);
+        console.log(stu.name);
+        console.log(stu.age);
+
+        //bind的使用
+        var x = 88;
+        var bindDemo = {
+            x: 99,
+            getX: function () {
+                return this.x;
+            }
+        }
+        console.log(bindDemo.getX());
+        var bd = bindDemo.getX;
+        var bd2 = bd.bind(bindDemo);
+        console.log(bd());
+        console.log(bd2());
+
+        //call apply bind 都是改变this所指代的位置的方法
+        labelDemo: {
+            console.log("this is a label");
+            break labelDemo;
+            console.log("cant see me");
+        }
+
+        //with的使用
+        var obj = { o1: '', o2: '' };
+        with (obj) {
+            o1 = 10;
+            o2 = 20;
+        }
+        console.log(obj);
+
+        //第一等公民 函数
+        function add(a, b) {
+            return a + b;
+        }
+        function a(ob) {
+            return ob;
+        }
+        console.log(a(add)(1, 2));//这里还能写为 a(add(1,2)) 参数放在括号内外均可
+
+        //函数作用域
+        var a = 1;
+        //如下函数a为全局变量a   a=1
+        var getA = function () {
+            //var a = 2;
+            console.log(a);
+        }
+        function f() {
+            var a = 2;
+            getA();//作用域为它声明时的作用域，与函数在哪里被调用无关
+        }
+        getA();
+        f();
+
+        //传递方式
+        /* 
+        两种情况类似，函数中的数组类似于数组的引用 
+        当引用的值被改变时 原地址的数值并不会发生变化
+        下面的赋值操作可以更加明确的反应这个问题。 
+        */
+        let asd = [1, 2, 3];
+        function f(o) {
+            o = [2, 3, 4];
+        }
+        f(asd);
+        console.log(asd);
+        let o = asd;
+        o = [2, 3, 4];
+        console.log(asd);      
     </script>
 </body>
 
