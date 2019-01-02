@@ -180,7 +180,56 @@
         console.log(asd);
         let o = asd;
         o = [2, 3, 4];
-        console.log(asd);      
+        console.log(asd);    
+
+        //arguments
+        function f(){
+            console.log(arguments.callee===f);//arguments的callee属性返回它所对应的原函数
+            return arguments.length;
+        }  
+        console.log(f(1,2,3));
+        //arguments并不是数组 而是一个对象 以下是2种将arguments转为真正数组的方法
+        // var args = Array.prototype.slice.call(arguments);
+
+        // var args = [];
+        // for (var i = 0 ; i<arguments.length ; i++){
+        //     args.push(arguments[i]);
+        // }
+
+        //闭包
+        function f(){
+            let a=1030;
+            return function(){
+                return a++;
+            }
+        }
+        let f_bibao = f();
+        console.log(f_bibao());
+        console.log(f_bibao());
+        console.log(f_bibao());
+        console.log(f_bibao());
+
+        //闭包封装私有属性和私有方法
+        function Person(){
+            let age;
+            function setAge(age){
+                this.age = age;
+            }
+            function getAge(){
+                return this.age;
+            }
+            return {
+                setAge,
+                getAge
+            }
+        }
+        let p1 = Person();
+        p1.setAge(12);
+        console.log(p1.getAge());
+
+        //LIFE 立即调用的函数表达式 (function(){...})()
+        //意义 省略函数名 避免全局变量污染 形成单独作用域封装外部无法读取的私有变量
+
     </script>
 </body>
 
