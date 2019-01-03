@@ -229,7 +229,10 @@
 
         //LIFE 立即调用的函数表达式 (function(){...})()
         //意义 省略函数名 避免全局变量污染 形成单独作用域封装外部无法读取的私有变量
-
+        (function life(){
+            let a = 10;
+            return a;
+        }).call(this);
     </script>
 </body>
 
